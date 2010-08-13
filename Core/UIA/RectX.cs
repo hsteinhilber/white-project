@@ -39,6 +39,15 @@ namespace White.Core.UIA
             return new Point(rectangle.Center().X, rectangle.Bottom - 1);
         }
 
+        public static bool IsContained(this Rect @this, Rect other, int tolerance)
+        {
+            other = new Rect(other.X - tolerance, 
+                            other.Y - tolerance, 
+                            other.Width + (tolerance * 2), 
+                            other.Height + (tolerance * 2));
+            return other.Contains(@this);
+        }
+
         public static readonly Point UnlikelyWindowPosition = new Point(-10000, -10000);
     }
 }

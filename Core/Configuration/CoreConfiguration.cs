@@ -24,5 +24,6 @@ namespace White.Core.Configuration
         IWaitHook AdditionalWaitHook { get; set; }
         int MaxElementSearchDepth { get; set; }
         bool RawElementBasedSearch { get; set; }
+        int WindowPositionTolerance { get; set; }
     }
 }

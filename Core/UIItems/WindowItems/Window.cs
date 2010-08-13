@@ -58,11 +58,11 @@ namespace White.Core.UIItems.WindowItems
         {
             ActionPerformed();
             Rect bounds = Desktop.Instance.Bounds;
-            if (!bounds.Contains(Bounds) && (TitleBar != null && TitleBar.MinimizeButton != null))
+            if (!Bounds.IsContained(bounds, CoreAppXmlConfiguration.Instance.WindowPositionTolerance) && (TitleBar != null && TitleBar.MinimizeButton != null))
             {
                 WhiteLogger.Instance.WarnFormat(
                     @"Window with title: {0} whose dimensions are: {1}, is not contained completely on the desktop {2}. 
-UI actions on window needing mouse would not work in area not falling under the desktop",
+UI actions on window needing mouse would not work in area not falling under the desktop. You can configure WindowPositionTolerance value to calibrate this check",
                     Title, Bounds, bounds);
             }
             windowSession.Register(this);

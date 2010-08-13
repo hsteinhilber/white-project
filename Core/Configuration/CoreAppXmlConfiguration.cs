@@ -31,6 +31,7 @@ namespace White.Core.Configuration
             defaultValues.Add("ComboBoxItemsPopulatedWithoutDropDownOpen", true);
             defaultValues.Add("RawElementBasedSearch", false);
             defaultValues.Add("MaxElementSearchDepth", 10);
+            defaultValues.Add("WindowPositionTolerance", 0);
         }
 
         public static CoreConfiguration Instance
@@ -132,6 +133,12 @@ namespace White.Core.Configuration
         {
             get { return S.ToBool(usedValues["RawElementBasedSearch"]); }
             set { SetUsedValue("RawElementBasedSearch", value); }
+        }
+
+        public int WindowPositionTolerance
+        {
+            get { return S.ToInt(usedValues["WindowPositionTolerance"]); }
+            set { SetUsedValue("WindowPositionTolerance", value); }
         }
     }
 }

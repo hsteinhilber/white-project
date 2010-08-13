@@ -63,7 +63,7 @@ namespace White.Core.Factory
                                {
                                    var windowElements = new BricksCollection<AutomationElement>();
                                    FindDescendantWindowElements(finder, process, windowElements);
-                                   if (windowElements.Count == 0) WhiteLogger.Instance.Warn("Could not find any windows for this application.");
+                                   if (windowElements.Count == 0) WhiteLogger.Instance.WarnFormat("Could not find any windows for Process: {0}.", process);
                                    return windowElements;
                                };
             Clock.Matched matched = obj => ((BricksCollection<AutomationElement>) obj).Count > 0;

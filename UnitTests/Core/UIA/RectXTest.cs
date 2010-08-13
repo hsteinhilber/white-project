@@ -51,5 +51,20 @@ namespace White.UnitTests.Core.UIA
         {
             Assert.AreEqual(new Rect(10, 10, 10, 10).ImmediateInteriorSouth(), new Point(15, 19));
         }
+
+        [Test]
+        public void IsContained()
+        {
+            Assert.AreEqual(false, new Rect(10, 10, 10, 10).IsContained(new Rect(9, 9, 9, 9), 0));
+            Assert.AreEqual(true, new Rect(10, 10, 9, 9).IsContained(new Rect(10, 10, 10, 10), 0));
+        }
+
+        [Test]
+        public void IsContainedWithTolerance()
+        {
+            Assert.AreEqual(true, new Rect(8, 8, 11, 11).IsContained(new Rect(9, 9, 9, 9), 1));
+            Assert.AreEqual(false, new Rect(8, 8, 12, 12).IsContained(new Rect(9, 9, 9, 9), 1));
+            Assert.AreEqual(false, new Rect(7, 7, 11, 11).IsContained(new Rect(9, 9, 9, 9), 1));
+        }
     }
 }

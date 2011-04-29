@@ -22,10 +22,10 @@ namespace White.Core.InputDevices
         private static extern IntPtr GetMessageExtraInfo();
 
         [DllImport("user32.dll")]
-        private static extern bool GetCursorPos(ref System.Drawing.Point cursorInfo);
+        private static extern bool GetCursorPos(out System.Drawing.Point cursorInfo);
 
         [DllImport("user32.dll")]
-        private static extern bool SetCursorPos(System.Drawing.Point cursorInfo);
+        private static extern bool SetCursorPos(int x, int y);
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(ref CursorInfo cursorInfo);
@@ -45,8 +45,8 @@ namespace White.Core.InputDevices
         {
             get
             {
-                var point = new System.Drawing.Point();
-                GetCursorPos(ref point);
+                var point;
+                GetCursorPos(out point);
                 return point.ConvertToWindowsPoint();
             }
             set
@@ -55,7 +55,8 @@ namespace White.Core.InputDevices
                 {
                     throw new WhiteException(string.Format("Trying to set location outside the screen. {0}", value));
                 }
-                SetCursorPos(value.ToDrawingPoint());
+                var point = value.ToDrawingPoint();
+                SetCursorPos(point.X, point.Y);
             }
         }
 
